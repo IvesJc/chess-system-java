@@ -1,11 +1,10 @@
-	package chess;
+package chess;
 
 import boardgame.Board;
 import boardgame.Piece;
 import boardgame.Position;
-import model.entities.ChessPosition;
 
-public class ChessPiece extends Piece{
+public abstract class ChessPiece extends Piece{
 	
 	private Color color;
 	private int moveCount;
@@ -19,18 +18,19 @@ public class ChessPiece extends Piece{
 	}
 
 	public ChessPosition getChessPosition() {
-		return null;
+		return ChessPosition.fromPosition(position);
 	}
 	
-	protected boolean isThereOpponentPiec(Position position) {
-		return true;
+	protected boolean isThereOpponentPiece(Position position) {
+		ChessPiece p = (ChessPiece)getBoard().piece(position);
+		return p != null && p.getColor() != color;
 	}
 	
 	protected void increaseMoveCount() {
-		
+		moveCount++;
 	}
 	protected void decreaseMoveCount() {
-		
+		moveCount--;
 	}
 
 	public Color getColor() {
@@ -40,10 +40,4 @@ public class ChessPiece extends Piece{
 	public int getMoveCount() {
 		return moveCount;
 	}
-	public void setMoveCount(int moveCount) {
-		this.moveCount = moveCount;
-	}
-	
-	
-
 }

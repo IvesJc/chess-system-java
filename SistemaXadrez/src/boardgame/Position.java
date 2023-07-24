@@ -10,8 +10,9 @@ public class Position {
 		this.column = column;
 	}
 	
-	protected void setValues(int row, int column) {
-		
+	public void setValues(int row, int column) {
+		this.row = row;
+		this.column = column;
 	}
 
 	public int getRow() {
